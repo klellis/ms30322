@@ -22,8 +22,9 @@ mongo = PyMongo(app)
 @app.route("/get_properties")
 def get_properties():
     properties = mongo.db.properties.find()
-    property_types = list(mongo.db.properties.find().sort("property_type", 1))
-    return render_template("properties.html", properties=properties, property_types=property_types)
+    property_types = mongo.db.type.find().sort("property_type")
+    bedrooms = mongo.db.bedrooms.find().sort("bedrooms")
+    return render_template("properties.html", properties=properties, property_types=property_types, bedrooms=bedrooms)
 
 
 if __name__ == "__main__":
