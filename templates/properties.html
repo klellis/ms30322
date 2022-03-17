@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>  
+    
+      <div class="wrapper">
+        <nav class="transparent"> 
+          <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">Logo</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="sass.html">Sass</a></li>
+              <li><a href="badges.html">Components</a></li>
+              <li><a href="collapsible.html">Javascript</a></li>
+              <li><a href="mobile.html">Mobile</a></li>
+            </ul>
+          </div>
+        </nav>
+      
+        <ul class="sidenav" id="mobile-demo">
+          <li><a href="sass.html">Sass</a></li>
+          <li><a href="badges.html">Components</a></li>
+          <li><a href="collapsible.html">Javascript</a></li>
+          <li><a href="mobile.html">Mobile</a></li>
+        </ul>
+        <div class="">
+          <h1>Find your forever home</h1>
+          <h1>List the one you've outgrown</h1>
+          
+     </div>
+      </div>
+
+      <div class="row card-panel grey lighten-5">
+        <form class="col s12" method="POST" action="">
+      <div class="row">
+        <div class="input-field col s12">
+                    <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
+          <select id="property_type" name="property_type" class="validate" required>
+                        <option value="" disabled selected>Choose Property Type</option>
+                        {% for type in property_types %}
+                            <option value="{{ type.property_type }}">{{ type.property_type }}</option>
+                        {% endfor %}
+                    </select>
+          <label for="property_type">Property Type</label>
+        </div>
+      </div>
+        </div>
+
+
+      <!-- Property Cards -->
+      {% for property in properties %}
+      <div class="container">
+      <div class="row">
+        <div class="col s12 m12">
+          <div class="card">
+            <div class="card-image">
+ <div class="carousel carousel-slider center" data-indicators="true">
+    <div class="carousel-fixed-item center">
+      
+      <a class="btn waves-effect white grey-text darken-text-2">More Info</a>
+    </div>
+      
+    <div class="carousel-item white-text" href="#one!">
+      <img src="{{ property.img_url[0] }}" alt="" class="responsive-img" loading="lazy">
+      <h2>First Panel</h2>
+      <p class="white-text">This is your first panel
+      </p>
+    </div>
+    <div class="carousel-item white-text" href="#two!">
+      <img src="{{ property.img_url[1] }}" alt="" class="responsive-img" loading="lazy">
+      <h2>Second Panel</h2>
+      <p class="white-text">This is your second panel</p>
+    </div>
+    <div class="carousel-item white-text" href="#three!">
+      <img src="{{ property.img_url[2] }}" alt="" class="responsive-img" loading="lazy">
+      <h2>Third Panel</h2>
+      <p class="white-text">This is your third panel</p>
+    </div>
+    <div class="carousel-item white-text" href="#four!">
+      <img src="{{ property.img_url[3] }}" alt="" class="responsive-img" loading="lazy">
+      <h2>Fourth Panel</h2>
+      <p class="white-text">This is your fourth panel</p>
+    </div>
+  </div>
+            </div>
+            <div class="card-content">
+              <p> 
+                {{ property.price }}
+                {{ property.description }} </p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      {% endfor %}
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
